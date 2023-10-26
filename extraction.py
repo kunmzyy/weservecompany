@@ -1,7 +1,8 @@
 from configparser import ConfigParser
 import pandas as pd
 from sql_statements.transform import transform_tables 
-from utils.helper import s3_path, bucket_name, access_key, secret_key
+from utils.helper import s3_path, bucket_name, access_key, secret_key, cleaned_call_log,cleaned_call_details
+
 
 
 def extract_received_calls_df():

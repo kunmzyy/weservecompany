@@ -45,7 +45,7 @@ Raw_data = config['DWH']['raw_data']
 staging_data = config['DWH']['staging_data']
 
 
-
+s3_path='s3://{}/{}.csv'
 
 
 
@@ -94,7 +94,7 @@ def create_raw_tables():
 
 
 def create_trans_tables():
-    for query in transform_tables:
+    for query in tables:
         conn = connect_to_dwh()
         cursor = conn.cursor()
         print(f"{query[:45]}")
@@ -109,7 +109,7 @@ def copy_from_s3_dwh():
     try:
         dwh_conn = connect_to_dwh()
         cursor = dwh_conn.cursor()
-        for table in transform_tables:
+        for table in tables:
             print(f"Copying {table} from s3 to DWH")
             table_copy_query = f"""
             copy {raw_data}.{table}
